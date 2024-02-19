@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+{% load static %}
+<div class="container mt-3 mb-3">
+
+        <div class="d-flex justify-content-around">
+            {% for category in categories %}
+            <a href="{% url 'category' category.id %}"
+               class="btn btn-outline-success btn-lg shadow">
+                <b>{{ category.title }}</b>
+            </a>
+            {% endfor %}
+        </div>
+
+    </div>
+
+<div class="container mb-3">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for recept in receptes %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <b>Категория: {{ recept.category }}</b>
+                            </div>
+                            <div>
+                                <b>Просмотры: {{ recept.views }}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" >
+                    <img src="{% static 'blog/images/card_static.jpg' %}"
+                         class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recept.title }}</h5>
+                        <p class="card-text">{{ recept.desc }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <b>Автор:</b>
+                            </div>
+                            <div>
+                                <b>{{ recept.created_at }}</b>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+{% endblock main %}
+
